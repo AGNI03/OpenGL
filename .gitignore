@@ -1,4 +1,8 @@
 
+
+#Local CMake presets
+CMakeUserPresets.json
+
 #Build outputs
 build/
 out/

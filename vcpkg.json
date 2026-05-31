@@ -1,6 +1,8 @@
 {
   "dependencies": [
-    "dependency1", 
-    "dependency2" // Add your dependencies here
+    "opengl",
+    "glfw3",
+    "glad",
+    "glm"
   ]
 }
