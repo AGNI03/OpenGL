@@ -1,0 +1,6 @@
+{
+  "dependencies": [
+    "dependency1", 
+    "dependency2" // Add your dependencies here
+  ]
+}

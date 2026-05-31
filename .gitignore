@@ -1,0 +1,20 @@
+
+#Build outputs
+build/
+out/
+
+# IDE (Visual Studio)
+.vs/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+#Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.o
