@@ -13,7 +13,7 @@ find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
 # ==================== Add Subdirectories ====================
-# add_subdirectory(src)
+add_subdirectory(src)
 
 # ==================== Main Executable ====================
 add_executable(${PROJECT_NAME}
@@ -26,6 +26,11 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     glfw
     glad::glad
     glm::glm
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    tutorial
+    exercise
 )
 
 # ==================== Compile Options ====================
