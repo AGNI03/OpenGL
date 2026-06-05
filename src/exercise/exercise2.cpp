@@ -41,7 +41,7 @@ const char* fragmentShaderSource3 = R"(
         FragColor = vec4(0.0f, 0.0f, 1.0f, 1.0f); // blue color
     })";
 
-int runExercise1() {
+int runExercise2() {
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();

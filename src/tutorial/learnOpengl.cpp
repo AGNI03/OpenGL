@@ -23,8 +23,9 @@ const char* vertexShaderSource = R"(
 const char* fragmentShaderSource = R"(
     #version 330 core
     out vec4 FragColor;
+    uniform vec4 ourColor;
     void main(){
-        FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+        FragColor = ourColor;
     })";
 
 int runTutorial() {
@@ -98,15 +99,13 @@ int runTutorial() {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left
+         0.0f,  0.5f, 0.0f,  // top right
+        -0.5f, -0.5f, 0.0f,  // bottom right
+         0.5f, -0.5f, 0.0f,  // bottom left
     };
 
     unsigned int indices[] = {
-        0, 1, 3,  // first triangle
-        1, 2, 3   // second triangle
+        0, 1, 2
     };
 
     // generate and bind vertex array object, vertex buffer object, and element buffer object
@@ -135,6 +134,7 @@ int runTutorial() {
 
     // render loop
     // -----------
+
     while (!glfwWindowShouldClose(window)) {
         // input
         processInput(window);
@@ -143,10 +143,20 @@ int runTutorial() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // draw triangle
+		// activate the shader program
         glUseProgram(shaderProgram);
+
+		// update the uniform color
+        float timeValue = glfwGetTime();
+        float redValue = (sin(timeValue)/2) + 0.5f;
+        float greenValue = (sin(timeValue + 2.0952f)/2) + 0.5f;
+        float blueValue = (sin(timeValue + 4.1905f)/2) + 0.5f;
+        int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+        glUniform4f(vertexColorLocation, redValue, greenValue, blueValue, 1.0f);
+
+		// render the triangle
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
         // glfw: swap buffers and poll IO events
